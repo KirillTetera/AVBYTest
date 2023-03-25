@@ -7,7 +7,15 @@ public class AVBYpage {
     //"//*[@id='__next']/div[2]/div[2]/div[1]/footer/div/p/text()";
 
     public static final String btnEnter =
-            "//*[@id=\"__next\"]/div[2]/div[2]/div[1]/header/div/nav/ul[2]/li[1]/a/span";
+            "//*[@id=\"__next\"]/div[2]/div[2]/div[1]/header/div/nav/ul[2]/li[1]/a";
+
+    public static final String btnHideCoockie =
+            "//*[@id=\"__next\"]/div[3]/div/div/button";
+
+
+
+
+
     public static final String phoneNumber = "//*[@id=\"authPhone\"]";
     public static final String password = "//*[@id=\"passwordPhone\"]";
 

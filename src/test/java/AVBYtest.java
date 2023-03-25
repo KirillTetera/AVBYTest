@@ -8,6 +8,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+
+import java.time.Duration;
+
 public class AVBYtest {
         WebDriver driver;
         @Before
@@ -16,7 +19,10 @@ public class AVBYtest {
             chromeOptions.addArguments("--remote-allow-origins=*","ignore-certificate-errors");
             driver = new ChromeDriver(chromeOptions);
             driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+            driver.manage().deleteAllCookies();
             driver.navigate().to(AVBYpage.url);
+
         }
         @Test
         public void testAVBYCopyright() {
@@ -27,18 +33,21 @@ public class AVBYtest {
                     copyright.getText());
         }
         @Test
-        public void testAVBYEnter() {
+        public void testAVBYEnter() throws InterruptedException {
+            Thread.sleep(8000);
+            WebElement btnHideCoockie = driver.findElement(By.xpath(AVBYpage.btnHideCoockie));
+            btnHideCoockie.click();
             WebElement btnEnter = driver.findElement(By.xpath(AVBYpage.btnEnter));
             btnEnter.click();
             WebElement phoneNumber = driver.findElement(By.xpath(AVBYpage.phoneNumber));
             phoneNumber.sendKeys(AVBYvalidUser.phoneNumber);
             WebElement password = driver.findElement(By.xpath(AVBYpage.password));
-            phoneNumber.sendKeys(AVBYvalidUser.password);
+            password.sendKeys(AVBYvalidUser.password);
 
         }
 
         @After
         public void tearDown(){
-            driver.quit();
+          driver.quit();
         }
 }
